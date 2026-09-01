@@ -1,0 +1,75 @@
+@import "tailwindcss";
+
+@theme {
+  /* MuktafiOS color tokens — Visual-System §4.1 */
+  --color-bg: #080a0c;
+  --color-bg-soft: #0d1013;
+  --color-surface: #111418;
+  --color-raised: #191e23;
+  --color-metal: #242a30;
+  --color-frost: #f4f7f5;
+  --color-muted: #a8b0ad;
+  --color-dim: #6f7874;
+  --color-line: rgba(244, 247, 245, 0.12);
+  --color-line-strong: rgba(244, 247, 245, 0.22);
+  --color-accent: #b7ff2a;
+  --color-accent-soft: rgba(183, 255, 42, 0.14);
+  --color-accent-line: rgba(183, 255, 42, 0.45);
+  --color-warning: #ffb84d;
+  --color-danger: #ff5c5c;
+
+  /* Radius — Visual-System §7.1 */
+  --radius-panel: 28px;
+  --radius-inner: 22px;
+  --radius-control: 14px;
+
+  /* Motion — Visual-System §10.1 */
+  --ease-out-heavy: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snap: cubic-bezier(0.32, 0.72, 0, 1);
+
+  /* Fonts */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px; /* floating dock clearance */
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-frost);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus ring — Visual-System §13 */
+:focus-visible {
+  outline: 2px solid var(--color-accent-line);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* Reduced motion — PRD FR-008 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
