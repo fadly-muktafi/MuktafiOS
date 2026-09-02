@@ -2,13 +2,10 @@ import { ArrowUpRight, Download } from "@phosphor-icons/react/dist/ssr";
 import { Hero } from "@/components/hero";
 import { PlaybookOverview } from "@/components/playbook";
 import { SelectedPlays } from "@/components/selected-plays";
+import { SystemModules } from "@/components/system-modules";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SectionHeader } from "@/components/ui/section-header";
-import {
-  contact,
-  matchLogs,
-  systemModules,
-} from "@/lib/content";
+import { contact, matchLogs } from "@/lib/content";
 
 /**
  * Phase 2A: content skeleton.
@@ -30,34 +27,8 @@ export default function Home() {
       {/* #work - Selected Plays */}
       <SelectedPlays />
 
-      {/* #stack - System Modules (Phase 2F) */}
-      <section
-        id="stack"
-        className="mx-auto max-w-5xl border-t border-line px-5 py-24 md:px-12"
-      >
-        <SectionHeader
-          heading={systemModules.heading}
-          intro={systemModules.intro}
-        />
-        <ul className="mt-12 space-y-6">
-          {systemModules.layers.map((layer) => (
-            <li key={layer.id} className="rounded-panel border border-line p-6">
-              <h3 className="text-xl font-semibold text-frost">{layer.label}</h3>
-              <p className="mt-1 text-sm text-muted">{layer.use}</p>
-              <ul className="mt-4 flex flex-wrap gap-2">
-                {layer.skills.map((skill) => (
-                  <li
-                    key={skill}
-                    className="rounded-full border border-line px-3 py-1 font-mono text-xs text-muted"
-                  >
-                    {skill}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* #stack - System Modules */}
+      <SystemModules />
 
       {/* #logs - Match Logs (Phase 2G) */}
       <section
