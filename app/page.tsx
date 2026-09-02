@@ -1,9 +1,9 @@
-import { ArrowUpRight, Download, Play } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRight, Download } from "@phosphor-icons/react/dist/ssr";
+import { Hero } from "@/components/hero";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import {
   contact,
-  hero,
   matchLogs,
   playbook,
   selectedPlays,
@@ -21,22 +21,8 @@ export default function Home() {
     <main>
       <h1 className="sr-only">Ahmad Fadly Muktafi - Fullstack Developer</h1>
 
-      {/* #home - Hero Command Center (Phase 2C) */}
-      <section id="home" className="mx-auto max-w-5xl px-5 py-24 md:px-12">
-        <p className="font-mono text-xs text-dim">{hero.brand}</p>
-        <h2 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight text-frost md:text-6xl">
-          {hero.headline}
-        </h2>
-        <p className="mt-6 max-w-xl text-lg text-muted">{hero.subtext}</p>
-        <div className="mt-10 flex flex-wrap gap-4">
-          <MagneticButton href={hero.primaryCta.href} icon={<Play weight="fill" />}>
-            {hero.primaryCta.label}
-          </MagneticButton>
-          <MagneticButton href={hero.secondaryCta.href} variant="secondary">
-            {hero.secondaryCta.label}
-          </MagneticButton>
-        </div>
-      </section>
+      {/* #home - Hero Command Center */}
+      <Hero />
 
       {/* #system - Playbook Overview (Phase 2D) */}
       <section
