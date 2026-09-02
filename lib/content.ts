@@ -15,8 +15,8 @@
 // ---------------------------------------------------------------------------
 
 export const nav = [
-  { label: "Work", href: "#work" },
   { label: "System", href: "#system" },
+  { label: "Work", href: "#work" },
   { label: "Stack", href: "#stack" },
   { label: "Logs", href: "#logs" },
   { label: "Contact", href: "#contact" },
