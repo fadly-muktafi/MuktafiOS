@@ -1,12 +1,12 @@
 import { ArrowUpRight, Download } from "@phosphor-icons/react/dist/ssr";
 import { Hero } from "@/components/hero";
 import { PlaybookOverview } from "@/components/playbook";
+import { SelectedPlays } from "@/components/selected-plays";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import {
   contact,
   matchLogs,
-  selectedPlays,
   systemModules,
 } from "@/lib/content";
 
@@ -27,56 +27,8 @@ export default function Home() {
       {/* #system - Playbook Overview */}
       <PlaybookOverview />
 
-      {/* #work - Selected Plays (Phase 2E) */}
-      <section
-        id="work"
-        className="mx-auto max-w-5xl border-t border-line px-5 py-24 md:px-12"
-      >
-        <SectionHeader
-          heading={selectedPlays.heading}
-          intro={selectedPlays.intro}
-        />
-        <ul className="mt-12 space-y-8">
-          {selectedPlays.plays.map((play) => (
-            <li
-              key={play.id}
-              className="rounded-panel border border-line bg-surface p-6 md:p-8"
-            >
-              <p className="font-mono text-xs text-dim">{play.number}</p>
-              <h3 className="mt-2 text-2xl font-semibold text-frost">
-                {play.title}
-              </h3>
-              <p className="mt-1 text-sm text-muted">
-                {play.context} &middot; {play.role}
-              </p>
-              <dl className="mt-6 space-y-5">
-                <div>
-                  <dt className="font-mono text-xs text-dim">Problem</dt>
-                  <dd className="mt-1 text-muted">{play.problem}</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-xs text-dim">Move</dt>
-                  <dd className="mt-1 text-muted">{play.move}</dd>
-                </div>
-                <div>
-                  <dt className="font-mono text-xs text-dim">System</dt>
-                  <dd className="mt-1 text-muted">{play.system}</dd>
-                </div>
-              </dl>
-              <ul className="mt-6 flex flex-wrap gap-2">
-                {play.stack.map((tech) => (
-                  <li
-                    key={tech}
-                    className="rounded-full border border-line px-3 py-1 font-mono text-xs text-muted"
-                  >
-                    {tech}
-                  </li>
-                ))}
-              </ul>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* #work - Selected Plays */}
+      <SelectedPlays />
 
       {/* #stack - System Modules (Phase 2F) */}
       <section

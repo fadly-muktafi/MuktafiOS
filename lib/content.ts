@@ -100,6 +100,7 @@ export type Play = {
   move: string;
   system: string;
   stack: readonly string[];
+  contribution: string;
 };
 
 export const selectedPlays = {
@@ -126,6 +127,8 @@ export const selectedPlays = {
         "SQL Server",
         "Hibernate",
       ],
+      contribution:
+        "Developed frontend and backend features for the HR application, converted Figma designs into ZK-based screens, and handled ongoing maintenance through troubleshooting and bug fixing.",
     },
     {
       id: "website-modernization",
@@ -139,6 +142,8 @@ export const selectedPlays = {
       system:
         "Maintained the website to keep it running smoothly, updated its design, and wrote simple technical documentation for future maintenance.",
       stack: ["Web Development", "UI Design", "Documentation", "Maintenance"],
+      contribution:
+        "Discussed application workflows and UI direction with the team, implemented the agreed changes as working code, maintained the website, and produced simple technical documentation.",
     },
     {
       id: "ict-coordination",
@@ -152,6 +157,8 @@ export const selectedPlays = {
       system:
         "Kept digital infrastructure running as a reliable base for school programs and organizational work.",
       stack: ["Coordination", "Infrastructure", "Team Leadership"],
+      contribution:
+        "Coordinated the school's digital infrastructure and supported organization activities by aligning people, tasks, and schedules.",
     },
   ] satisfies Play[],
 } as const;
