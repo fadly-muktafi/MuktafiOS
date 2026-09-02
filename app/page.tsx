@@ -1,11 +1,11 @@
 import { ArrowUpRight, Download } from "@phosphor-icons/react/dist/ssr";
 import { Hero } from "@/components/hero";
+import { PlaybookOverview } from "@/components/playbook";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { SectionHeader } from "@/components/ui/section-header";
 import {
   contact,
   matchLogs,
-  playbook,
   selectedPlays,
   systemModules,
 } from "@/lib/content";
@@ -24,24 +24,8 @@ export default function Home() {
       {/* #home - Hero Command Center */}
       <Hero />
 
-      {/* #system - Playbook Overview (Phase 2D) */}
-      <section
-        id="system"
-        className="mx-auto max-w-5xl border-t border-line px-5 py-24 md:px-12"
-      >
-        <SectionHeader heading={playbook.heading} intro={playbook.intro} />
-        <ul className="mt-12 space-y-6">
-          {playbook.modes.map((mode) => (
-            <li key={mode.id} className="rounded-panel border border-line p-6">
-              <p className="font-mono text-xs text-dim">{mode.id}</p>
-              <h3 className="mt-2 text-xl font-semibold text-frost">
-                {mode.label} - {mode.headline}
-              </h3>
-              <p className="mt-2 max-w-xl text-muted">{mode.copy}</p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      {/* #system - Playbook Overview */}
+      <PlaybookOverview />
 
       {/* #work - Selected Plays (Phase 2E) */}
       <section
