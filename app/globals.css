@@ -58,6 +58,15 @@ body {
   color: var(--color-bg);
 }
 
+/* Native disclosure (Match Logs) */
+summary {
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
 /* Menu overlay item entrance (MobileMenu) */
 @keyframes menu-item {
   from {

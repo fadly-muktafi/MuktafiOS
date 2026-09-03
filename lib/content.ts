@@ -235,7 +235,9 @@ export type MatchLog = {
   period: string;
   org: string;
   role: string;
+  kind: "WORK" | "ORG" | "SCHOOL";
   summary: string;
+  details: readonly string[];
 };
 
 export const matchLogs = {
@@ -248,8 +250,16 @@ export const matchLogs = {
       period: "Jan 2026 - Jun 2026",
       org: "PT Swadharma Duta Data",
       role: "Fullstack Developer Intern",
+      kind: "WORK",
       summary:
         "Built and maintained features for the company's HR web application using Java + ZK Framework, SQL Server, and Hibernate, including Figma-to-code implementation.",
+      details: [
+        "Developed frontend and backend features using ZUL, CSS, JavaScript, and Java + ZK Framework.",
+        "Worked with SQL Server and Hibernate for data storage and queries.",
+        "Converted Figma designs into Java + ZK Framework code.",
+        "Maintained web applications through troubleshooting and bug fixing.",
+        "Collaborated with the internal development team and reported progress to a direct supervisor.",
+      ],
     },
     {
       id: "dpf",
@@ -257,35 +267,57 @@ export const matchLogs = {
       period: "Jan 2025 - Jun 2025",
       org: "Djalaludin Pane Foundation",
       role: "Fullstack Developer Intern",
+      kind: "WORK",
       summary:
         "Modernized and maintained the foundation's website, discussed workflows with the team, and wrote documentation for future maintenance.",
+      details: [
+        "Discussed application workflow and UI design directly with the team, then implemented the results as functional code.",
+        "Maintained the website so it stayed smooth and useful for users.",
+        "Updated the website design to be more modern and appealing.",
+        "Created simple technical documentation to support future maintenance.",
+      ],
     },
     {
       id: "osis",
-      years: "2024-2025",
+      years: "2024-25",
       period: "2024 - 2025",
       org: "OSIS SMKN 64 Jakarta",
       role: "Head of ICT Division",
+      kind: "ORG",
       summary:
         "Led the school's digital infrastructure and coordinated ICT support across organization activities.",
+      details: [
+        "Led the management of the school's digital infrastructure.",
+        "Coordinated ICT support across organization activities.",
+      ],
     },
     {
       id: "basketball",
-      years: "2024-2025",
+      years: "2024-25",
       period: "2024 - 2025",
       org: "Basketball Extracurricular, SMKN 64 Jakarta",
       role: "Head of Activities",
+      kind: "ORG",
       summary:
         "Organized training schedules, coordinated the team, and kept members disciplined.",
+      details: [
+        "Organized training schedules for the basketball program.",
+        "Coordinated the team and ensured members maintained discipline.",
+      ],
     },
     {
       id: "smk",
-      years: "2023-2026",
+      years: "2023-26",
       period: "2023 - 2026",
       org: "SMK Negeri 64 Jakarta",
       role: "Software Engineering (RPL)",
+      kind: "SCHOOL",
       summary:
         "Vocational software engineering education covering frontend, backend, database, and tooling fundamentals.",
+      details: [
+        "Software Engineering (Rekayasa Perangkat Lunak) vocational program.",
+        "Covered frontend, backend, database, and development tooling fundamentals.",
+      ],
     },
   ] satisfies MatchLog[],
 } as const;
