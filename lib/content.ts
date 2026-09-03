@@ -331,7 +331,7 @@ export const contact = {
   body: "Send the brief, the workflow, or the problem. I will help turn it into a working product.",
   primaryCta: {
     label: "Contact Ahmad",
-    href: "mailto:fadlymuktafi@gmail.com",
+    href: "#contact-form",
   },
   secondaryCta: {
     label: "Download CV",
@@ -341,7 +341,7 @@ export const contact = {
     {
       label: "Email",
       value: "fadlymuktafi@gmail.com",
-      href: "mailto:fadlymuktafi@gmail.com",
+      copy: true,
     },
     {
       label: "GitHub",
@@ -361,6 +361,18 @@ export const contact = {
   ],
 } as const;
 
+export const contactForm = {
+  id: "contact-form",
+  name: { label: "Name", placeholder: "Your name" },
+  email: { label: "Email", placeholder: "you@company.com" },
+  message: { label: "Message", placeholder: "The brief, the workflow, or the problem." },
+  submit: "Send Message",
+  sending: "Sending...",
+  success: "Message sent. I will get back to you soon.",
+  error:
+    "Something went wrong. Please try again, or email me directly at fadlymuktafi@gmail.com.",
+} as const;
+
 // ---------------------------------------------------------------------------
 // Command Palette (UX-Blueprint §7)
 // ---------------------------------------------------------------------------
@@ -371,5 +383,5 @@ export const commandActions = [
   { label: "Read Match Logs", href: "#logs" },
   { label: "See How the System Moves", href: "#system" },
   { label: "Download CV", href: "/cv-ahmad-fadly-muktafi.pdf" },
-  { label: "Contact Ahmad", href: "mailto:fadlymuktafi@gmail.com" },
+  { label: "Contact Ahmad", href: "#contact" },
 ] as const;
