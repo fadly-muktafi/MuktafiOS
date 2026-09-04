@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
+import { BootOverlay } from "@/components/boot-overlay";
 import { CommandPalette } from "@/components/command-palette";
 import { CommandPaletteProvider } from "@/lib/command-palette-context";
 import { FloatingDock } from "@/components/floating-dock";
@@ -24,6 +25,7 @@ export default function RootLayout({
         {/* 1px sentinel: scrolled state for FloatingDock / MobileMenu */}
         <div id="nav-sentinel" aria-hidden="true" className="h-px w-full" />
         <CommandPaletteProvider>
+          <BootOverlay />
           <FloatingDock />
           <MobileMenu />
           <CommandPalette />
