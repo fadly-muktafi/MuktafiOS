@@ -1,9 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Download, List, X } from "@phosphor-icons/react";
+import { Command, Download, List, X } from "@phosphor-icons/react";
 import { contact, nav } from "@/lib/content";
 import { useActiveSection, useScrolled } from "@/lib/use-active-section";
+import { useCommandPalette } from "@/lib/command-palette-context";
 
 /**
  * MobileMenu — mobile shell (UX-Blueprint §4.2).
@@ -14,6 +15,7 @@ export function MobileMenu() {
   const [open, setOpen] = useState(false);
   const active = useActiveSection();
   const scrolled = useScrolled();
+  const { setOpen: setPaletteOpen } = useCommandPalette();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
 
@@ -150,6 +152,19 @@ export function MobileMenu() {
             <Download size={18} weight="bold" />
             {contact.secondaryCta.label}
           </a>
+
+          <button
+            type="button"
+            onClick={() => {
+              close();
+              setPaletteOpen(true);
+            }}
+            className="mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-line bg-surface px-5 font-medium text-frost transition-colors hover:border-line-strong animate-[menu-item_400ms_var(--ease-out-heavy)_both] opacity-0"
+            style={{ animationDelay: `${140 + nav.length * 60}ms` }}
+          >
+            <Command size={18} />
+            Command Palette
+          </button>
         </div>
       ) : null}
     </>
