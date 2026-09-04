@@ -6,6 +6,10 @@ import { contactForm } from "@/lib/content";
 
 type SendStatus = "idle" | "sending" | "success" | "error";
 
+type ContactFormProps = {
+  className?: string;
+};
+
 const inputClasses =
   "mt-2 w-full rounded-control border border-line bg-bg px-4 text-sm text-frost placeholder:text-dim/60 transition-colors focus:border-accent-line focus:outline-none";
 
@@ -14,7 +18,7 @@ const inputClasses =
  * Real labels on every field (PRD §18), honeypot anti-spam,
  * and full idle/sending/success/error states.
  */
-export function ContactForm() {
+export function ContactForm({ className = "" }: ContactFormProps) {
   const [status, setStatus] = useState<SendStatus>("idle");
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -68,9 +72,9 @@ export function ContactForm() {
       id={contactForm.id}
       onSubmit={handleSubmit}
       aria-label="Contact form"
-      className="mx-auto mt-10 w-full max-w-md scroll-mt-28 rounded-inner border border-line bg-surface p-5 text-left md:p-6"
+      className={`flex h-full w-full scroll-mt-28 flex-col rounded-inner border border-line bg-surface p-5 text-left md:p-6 ${className}`}
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-1 flex-col gap-4">
         <div>
           <label
             htmlFor="cf-name"

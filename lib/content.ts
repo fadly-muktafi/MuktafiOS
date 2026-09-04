@@ -373,6 +373,26 @@ export const contactForm = {
     "Something went wrong. Please try again, or email me directly at fadlymuktafi@gmail.com.",
 } as const;
 
+/**
+ * Home Base card (Final Play right panel).
+ * Java island map marking South Jakarta — location only, no
+ * coordinates/clock readouts.
+ */
+export const homeBase = {
+  label: "Home Base",
+  city: "South Jakarta",
+  region: "Jakarta, Indonesia",
+  tooltip: {
+    title: "Based in South Jakarta",
+    body: "If you're in town, let's grab a coffee.",
+  },
+} as const;
+
+export const contactToggle = {
+  showForm: "Contact Ahmad",
+  showPlace: "Meet Ahmad",
+} as const;
+
 // ---------------------------------------------------------------------------
 // Command Palette (UX-Blueprint §7)
 // ---------------------------------------------------------------------------
