@@ -4,20 +4,21 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { bootSequence, hero } from "@/lib/content";
 
 // Timing budget: total stays under the 2.5s PRD limit.
-const BEAT_MS = 550; // delay between status beats
-const EXIT_AT_MS = 1750; // when the mask reveal starts
-const EXIT_MS = 550; // reveal duration, then unmount
-const REDUCED_TOTAL_MS = 450; // static flash for reduced-motion users
+const BEAT_MS = 500; // delay between status beats
+const EXIT_AT_MS = 2500; // when the mask reveal starts
+const EXIT_MS = 2500; // reveal duration, then unmount
+const REDUCED_TOTAL_MS = 500; // static flash for reduced-motion users
 
 /**
  * BootOverlay (PRD §11.1, UX-Blueprint §6.1).
- * OS-style intro: brand + tagline + three status beats over
- * drawing court lines. Skippable via click/key, exits with a
- * vertical mask reveal, remembered per session (boot_seen).
+ * OS-style intro rendered from the first paint (no flash of
+ * page content behind it), shows on every load. Skippable via
+ * click/key/Skip button, exits with a vertical mask reveal.
  * Reduced-motion users get a near-instant static flash.
+ * Scroll lock is tied to overlay lifetime and always restored.
  */
 export function BootOverlay() {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(true);
   const [step, setStep] = useState(-1);
   const [leaving, setLeaving] = useState(false);
   const timers = useRef<number[]>([]);
@@ -29,53 +30,36 @@ export function BootOverlay() {
 
   const finish = useCallback(() => {
     setLeaving(true);
-    const id = window.setTimeout(() => {
-      setMounted(false);
-      try {
-        sessionStorage.setItem("boot_seen", "1");
-      } catch {
-        // storage unavailable (private mode) — boot shows again next visit
-      }
-    }, EXIT_MS);
+    const id = window.setTimeout(() => setMounted(false), EXIT_MS);
     timers.current.push(id);
   }, []);
 
+  // Boot timeline: beats -> exit (or a short static flash if reduced motion)
   useEffect(() => {
-    // Client-only gate: sessionStorage decides first-visit vs returning.
-    let seen = false;
-    try {
-      seen = sessionStorage.getItem("boot_seen") === "1";
-    } catch {
-      seen = false;
-    }
-    if (seen) return;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    // Defer mount to the next frame — keeps the browser's first paint
-    // untouched and satisfies the no-sync-setState-in-effect rule.
-    const raf = requestAnimationFrame(() => {
-      setMounted(true);
-      document.body.style.overflow = "hidden";
+    if (reduced) {
+      timers.current.push(window.setTimeout(finish, REDUCED_TOTAL_MS));
+    } else {
+      bootSequence.forEach((_, i) => {
+        timers.current.push(
+          window.setTimeout(() => setStep(i), BEAT_MS * (i + 1))
+        );
+      });
+      timers.current.push(window.setTimeout(finish, EXIT_AT_MS));
+    }
 
-      if (reduced) {
-        timers.current.push(window.setTimeout(finish, REDUCED_TOTAL_MS));
-      } else {
-        bootSequence.forEach((_, i) => {
-          timers.current.push(
-            window.setTimeout(() => setStep(i), BEAT_MS * (i + 1))
-          );
-        });
-        timers.current.push(window.setTimeout(finish, EXIT_AT_MS));
-      }
-    });
+    return () => clearTimers();
+  }, [clearTimers, finish]);
 
+  // Scroll lock lives and dies with the overlay's presence.
+  useEffect(() => {
+    if (!mounted) return;
+    document.body.style.overflow = "hidden";
     return () => {
-      cancelAnimationFrame(raf);
-      clearTimers();
       document.body.style.overflow = "";
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [mounted]);
 
   // Skip via any key press while visible.
   useEffect(() => {
@@ -92,8 +76,8 @@ export function BootOverlay() {
 
   return (
     <div
-      role="presentation"
-      aria-hidden="true"
+      role="dialog"
+      aria-label="MuktafiOS loading screen"
       onClick={() => {
         if (!leaving) {
           clearTimers();
@@ -153,7 +137,6 @@ export function BootOverlay() {
           )}
         </div>
 
-        {/* Skip — real affordance even though overlay aria-hidden */}
         <button
           type="button"
           aria-hidden={leaving}
