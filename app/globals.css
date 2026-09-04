@@ -157,6 +157,85 @@ summary::-webkit-details-marker {
   animation: boot-line-draw 700ms var(--ease-out-heavy) 100ms forwards;
 }
 
+/* ------------------------------------------------------------------ */
+/* Phase 2K — motion polish                                            */
+/* All entrances are gated behind html.boot-done + html[data-js] so    */
+/* no-JS users never see hidden content. Reduced-motion guard (above)  */
+/* collapses these to ~instant.                                        */
+/* ------------------------------------------------------------------ */
+
+@keyframes gate-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+html[data-js] [data-gate] {
+  opacity: 0;
+}
+
+html[data-js].boot-done [data-gate] {
+  animation: gate-in 640ms var(--ease-out-heavy) both;
+  animation-delay: var(--gate-delay, 0ms);
+}
+
+/* Tactical court entrance — nodes pop, edges fade after */
+@keyframes node-in {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+html[data-js] .court-node {
+  opacity: 0;
+}
+
+html[data-js].boot-done .court-node {
+  animation: node-in 520ms var(--ease-out-heavy) both;
+  animation-delay: var(--gate-delay, 0ms);
+}
+
+html[data-js] .court-edges {
+  opacity: 0;
+}
+
+html[data-js].boot-done .court-edges {
+  animation: fade-in 640ms ease both;
+  animation-delay: 950ms;
+}
+
+/* Scroll reveal — driven by IntersectionObserver via <Reveal /> */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 700ms var(--ease-out-heavy),
+    transform 700ms var(--ease-out-heavy);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+}
+
+html:not([data-js]) .reveal {
+  opacity: 1;
+  transform: none;
+}
+
 /* Reduced motion — PRD FR-008 */
 @media (prefers-reduced-motion: reduce) {
   html {

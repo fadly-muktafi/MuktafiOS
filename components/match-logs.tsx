@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import { CaretDown } from "@phosphor-icons/react";
 import { matchLogs } from "@/lib/content";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 
 /**
@@ -28,6 +29,7 @@ export function MatchLogs() {
     >
       <SectionHeader heading={matchLogs.heading} intro={matchLogs.intro} />
 
+      <Reveal>
       <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,160px)_minmax(0,1fr)] lg:gap-16">
         {/* Year rail (desktop) */}
         <div className="hidden lg:block">
@@ -109,6 +111,7 @@ export function MatchLogs() {
           ))}
         </ol>
       </div>
+      </Reveal>
     </section>
   );
 }

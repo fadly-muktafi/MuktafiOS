@@ -6,6 +6,7 @@ import { ContactForm } from "@/components/contact-form";
 import { CopyEmailButton } from "@/components/copy-email-button";
 import { HomeBaseCard } from "@/components/home-base-card";
 import { BezelPanel } from "@/components/ui/bezel-panel";
+import { Reveal } from "@/components/ui/reveal";
 import {
   MagneticActionButton,
   MagneticButton,
@@ -41,6 +42,7 @@ export function FinalPlay() {
       id="contact"
       className="mx-auto w-full max-w-[1440px] border-t border-line px-5 pb-16 pt-24 md:px-12 lg:px-[72px] lg:pb-20 lg:pt-40"
     >
+      <Reveal>
       <BezelPanel innerClassName="overflow-hidden px-6 py-12 md:px-10 md:py-16 lg:px-14">
         <div className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,440px)] lg:gap-14">
           {/* Copy column — always on the left */}
@@ -150,6 +152,7 @@ export function FinalPlay() {
           ))}
         </ul>
       </BezelPanel>
+      </Reveal>
 
       <footer className="mt-10 flex items-center justify-center">
         <p className="font-mono text-[11px] tracking-[0.14em] text-dim">

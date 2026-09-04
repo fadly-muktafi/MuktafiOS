@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import { ArrowUpRight } from "@phosphor-icons/react";
 import { selectedPlays, type Play } from "@/lib/content";
 import { BezelPanel } from "@/components/ui/bezel-panel";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { PlayDrawer } from "@/components/play-drawer";
 
@@ -62,6 +63,7 @@ export function SelectedPlays() {
       />
 
       {/* Desktop: sticky play sheet + play index */}
+      <Reveal>
       <div className="mt-14 hidden gap-10 lg:grid lg:grid-cols-[minmax(0,7fr)_minmax(0,4fr)] lg:items-start">
         <div className="lg:sticky lg:top-28">
           <BezelPanel innerClassName="p-6 md:p-8">
@@ -166,8 +168,10 @@ export function SelectedPlays() {
           })}
         </div>
       </div>
+      </Reveal>
 
       {/* Mobile: stacked play cards */}
+      <Reveal delay={80} className="lg:hidden">
       <ul className="mt-10 flex flex-col gap-5 lg:hidden">
         {plays.map((play) => (
           <li key={play.id} className="rounded-panel border border-line bg-surface p-5">
@@ -211,6 +215,7 @@ export function SelectedPlays() {
           </li>
         ))}
       </ul>
+      </Reveal>
 
       <PlayDrawer play={drawerPlay} onClose={() => setDrawerPlay(null)} />
     </section>

@@ -4,6 +4,7 @@ import { useCallback, useRef, useState } from "react";
 import { playbook } from "@/lib/content";
 import { BezelPanel } from "@/components/ui/bezel-panel";
 import { FormationMap } from "@/components/formation-map";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 
 /**
@@ -61,12 +62,15 @@ export function PlaybookOverview() {
 
       <div className="mt-14 grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:gap-16">
         {/* Formation map */}
-        <BezelPanel innerClassName="p-4 md:p-6">
-          <FormationMap modes={modes} activeId={activeId} />
-        </BezelPanel>
+        <Reveal>
+          <BezelPanel innerClassName="p-4 md:p-6">
+            <FormationMap modes={modes} activeId={activeId} />
+          </BezelPanel>
+        </Reveal>
 
         {/* Mode selector */}
-        <div>
+        <Reveal delay={120}>
+          <div>
           <div
             role="tablist"
             aria-label="Playbook modes"
@@ -127,7 +131,8 @@ export function PlaybookOverview() {
               {activeMode.copy}
             </p>
           </div>
-        </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

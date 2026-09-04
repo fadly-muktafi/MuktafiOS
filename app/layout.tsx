@@ -20,8 +20,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html
+      lang="en"
+      className={`${GeistSans.variable} ${GeistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="bg-bg font-sans text-frost">
+        {/* JS-enabled flag for motion gating (Phase 2K) */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.setAttribute('data-js','');",
+          }}
+        />
+        {/* No-JS: boot overlay is decorative; never block content */}
+        <noscript>
+          <style>{`#boot-overlay{display:none}`}</style>
+        </noscript>
         {/* 1px sentinel: scrolled state for FloatingDock / MobileMenu */}
         <div id="nav-sentinel" aria-hidden="true" className="h-px w-full" />
         <CommandPaletteProvider>

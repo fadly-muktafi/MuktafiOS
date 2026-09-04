@@ -1,5 +1,6 @@
 "use client";
 
+import type { CSSProperties } from "react";
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 
@@ -131,8 +132,8 @@ export function TacticalCourt() {
         <circle cx="320" cy="240" r="64" />
       </g>
 
-      {/* Formation edges */}
-      <g fill="none" aria-hidden="true">
+      {/* Formation edges — fade in after nodes (Phase 2K gate) */}
+      <g fill="none" aria-hidden="true" className="court-edges">
         {EDGES.map(([from, to]) => {
           const a = nodeById.get(from)!;
           const b = nodeById.get(to)!;
@@ -156,8 +157,8 @@ export function TacticalCourt() {
         })}
       </g>
 
-      {/* Nodes */}
-      {NODES.map((node) => {
+      {/* Nodes — staggered pop via gate (Phase 2K) */}
+      {NODES.map((node, index) => {
         const isActive = activeId === node.id;
         return (
           <g
@@ -174,7 +175,8 @@ export function TacticalCourt() {
             onClick={() =>
               setActiveId((cur) => (cur === node.id ? null : node.id))
             }
-            className="outline-none"
+            className="court-node outline-none"
+            style={{ "--gate-delay": `${320 + index * 90}ms` } as CSSProperties}
           >
             {/* focus/active ring */}
             <circle

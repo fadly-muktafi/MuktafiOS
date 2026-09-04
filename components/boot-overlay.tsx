@@ -30,6 +30,8 @@ export function BootOverlay() {
 
   const finish = useCallback(() => {
     setLeaving(true);
+    // Unlock the Phase 2K entrance gates as the mask lifts.
+    document.documentElement.classList.add("boot-done");
     const id = window.setTimeout(() => setMounted(false), EXIT_MS);
     timers.current.push(id);
   }, []);
@@ -76,6 +78,7 @@ export function BootOverlay() {
 
   return (
     <div
+      id="boot-overlay"
       role="dialog"
       aria-label="MuktafiOS loading screen"
       onClick={() => {

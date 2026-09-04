@@ -3,6 +3,7 @@
 import { useCallback, useRef, useState } from "react";
 import { Minus, Plus } from "@phosphor-icons/react";
 import { BezelPanel } from "@/components/ui/bezel-panel";
+import { Reveal } from "@/components/ui/reveal";
 import { SectionHeader } from "@/components/ui/section-header";
 import { systemModules } from "@/lib/content";
 
@@ -60,6 +61,7 @@ export function SystemModules() {
       />
 
       {/* Desktop: layer stack + detail panel */}
+      <Reveal>
       <div className="mt-14 hidden gap-10 lg:grid lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)] lg:items-start lg:gap-14">
         {/* Layer stack */}
         <div
@@ -147,8 +149,10 @@ export function SystemModules() {
           </div>
         </BezelPanel>
       </div>
+      </Reveal>
 
       {/* Mobile: accordion */}
+      <Reveal delay={80} className="lg:hidden">
       <div className="mt-10 flex flex-col gap-3 lg:hidden">
         {layers.map((layer, index) => {
           const open = openId === layer.id;
@@ -208,6 +212,7 @@ export function SystemModules() {
           );
         })}
       </div>
+      </Reveal>
     </section>
   );
 }
