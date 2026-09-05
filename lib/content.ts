@@ -57,7 +57,7 @@ export type PlaybookMode = {
 export const playbook = {
   heading: "How the system moves.",
   intro:
-    "Ahmad connects product thinking, interface work, backend logic, and team coordination into one build rhythm.",
+    "Muktafi connects product thinking, interface work, backend logic, and team coordination into one build rhythm.",
   modes: [
     {
       id: "build",
@@ -76,6 +76,12 @@ export const playbook = {
       label: "Connect",
       headline: "Backend, database, and system integration",
       copy: "I connect backend logic, data, and tools into reliable flows.",
+    },
+    {
+      id: "support",
+      label: "Support",
+      headline: "Maintenance, docs & troubleshooting",
+      copy: "I keep shipped systems healthy through maintenance and fixes",
     },
     {
       id: "lead",
@@ -330,7 +336,7 @@ export const contact = {
   heading: "Ready for the next system.",
   body: "Send the brief, the workflow, or the problem. I will help turn it into a working product.",
   primaryCta: {
-    label: "Contact Ahmad",
+    label: "Contact Muktafi",
     href: "#contact-form",
   },
   secondaryCta: {
@@ -389,8 +395,8 @@ export const homeBase = {
 } as const;
 
 export const contactToggle = {
-  showForm: "Contact Ahmad",
-  showPlace: "Meet Ahmad",
+  showForm: "Contact Muktafi",
+  showPlace: "Meet Muktafi",
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -403,5 +409,5 @@ export const commandActions = [
   { label: "Read Match Logs", href: "#logs" },
   { label: "See How the System Moves", href: "#system" },
   { label: "Download CV", href: "/cv-ahmad-fadly-muktafi.pdf" },
-  { label: "Contact Ahmad", href: "#contact" },
+  { label: "Contact Muktafi", href: "#contact" },
 ] as const;
